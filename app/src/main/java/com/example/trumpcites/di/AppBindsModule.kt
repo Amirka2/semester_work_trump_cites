@@ -6,6 +6,8 @@ import com.example.trumpcites.data.Repository.PhotoRepository
 import com.example.trumpcites.data.Repository.PhotoRepositoryImpl
 import com.example.trumpcites.domain.DeletePhotoUseCase
 import com.example.trumpcites.domain.DeletePhotoUseCaseImpl
+import com.example.trumpcites.domain.GetPhotoUseCase
+import com.example.trumpcites.domain.GetPhotoUseCaseImpl
 import com.example.trumpcites.domain.GetPhotosUseCase
 import com.example.trumpcites.domain.GetPhotosUseCaseImpl
 import com.example.trumpcites.domain.SavePhotoUseCase
@@ -29,6 +31,9 @@ interface AppBindsModule {
 
     @Binds
     fun bindSavePhotoUseCase(useCase: SavePhotoUseCaseImpl): SavePhotoUseCase
+
+    @Binds
+    fun bindGetPhotoUseCase(useCase: GetPhotoUseCaseImpl): GetPhotoUseCase
 
     companion object {
         @Provides

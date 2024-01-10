@@ -36,5 +36,9 @@ class HomeFragment: Fragment(R.layout.fragment_get_photo) {
         binding.getButton.setOnClickListener {
             viewModel.getPhoto(binding.memeImage, mImageAddress)
         }
+
+        binding.saveButton.setOnClickListener {
+            viewModel.savePhoto(binding.memeImage, requireContext())
+        }
     }
 }

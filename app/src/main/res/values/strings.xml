@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TrumpCites</string>
     <string name="get_button_text">Получить</string>
+    <string name="save_button_text">Добавить в избранное</string>
 </resources>

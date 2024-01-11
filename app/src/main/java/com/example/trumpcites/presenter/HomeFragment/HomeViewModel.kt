@@ -52,7 +52,7 @@ class HomeViewModel @Inject constructor(
 
         val simpleDateFormat = SimpleDateFormat("yyyymmsshhmmss")
         val date = simpleDateFormat.format(Date())
-        val name = "IMG" + date + ".jpg"
+        val name = "TronaldDump_" + date + ".jpg"
         val fileName = file.absolutePath + "/" + name
         val newFile = File(fileName)
         var savedFile: File
@@ -62,7 +62,7 @@ class HomeViewModel @Inject constructor(
             val bitmap = draw.bitmap
             val fileOutPutStream = FileOutputStream(newFile)
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutPutStream)
-            Toast.makeText(context, "File saved succesfully", Toast.LENGTH_SHORT)
+            Toast.makeText(context, "Мем сохранен!", Toast.LENGTH_SHORT)
                 .show()
             savedFile = newFile
             fileOutPutStream.flush()
@@ -79,7 +79,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getDisc(): File {
-        val file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-        return File(file, "YOUR_ALBUM_NAME")
+        val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        return File(directory, "Tronald_Dump")
     }
 }

@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.trumpcites.data.Model.PhotoModel
+import com.example.trumpcites.domain.DeletePhotoUseCase
 import com.example.trumpcites.domain.GetPhotosUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ShowPhotosViewModel @Inject constructor(
-    private val getPhotosUseCase: GetPhotosUseCase
+    private val getPhotosUseCase: GetPhotosUseCase,
+    private val deletePhotoUseCase: DeletePhotoUseCase,
 ): ViewModel() {
     private val _paths = MutableLiveData<List<PhotoModel>>()
     val paths: LiveData<List<PhotoModel>>
@@ -21,6 +23,12 @@ class ShowPhotosViewModel @Inject constructor(
             getPhotosUseCase().collect() {
                 _paths.postValue(it)
             }
+        }
+    }
+
+    fun deletePhoto(photoId: Int) {
+        viewModelScope.launch {
+            deletePhotoUseCase(photoId)
         }
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.trumpcites.R
 import com.example.trumpcites.databinding.FragmentGetPhotoBinding
@@ -35,10 +36,16 @@ class HomeFragment: Fragment(R.layout.fragment_get_photo) {
 
         binding.getButton.setOnClickListener {
             viewModel.getPhoto(binding.memeImage, mImageAddress)
+            binding.saveButton.visibility = View.VISIBLE
         }
 
         binding.saveButton.setOnClickListener {
             viewModel.savePhoto(binding.memeImage, requireContext())
+        }
+
+        binding.goToFavorite.setOnClickListener {
+            val direction = HomeFragmentDirections.actionHomeFragmentToShowPhotosFragment()
+            findNavController().navigate(direction)
         }
     }
 }

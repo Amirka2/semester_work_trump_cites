@@ -11,9 +11,9 @@ interface PhotoDAO {
     @Upsert
     suspend fun upsertPhoto(photo: PhotoEntity)
 
-    @Query("SELECT * from photos")
+    @Query("SELECT * FROM photos")
     fun getPhotos(): Flow<List<PhotoEntity>>
 
-    @Query("DELETE from photos WHERE id=:id")
+    @Query("DELETE FROM photos WHERE id=:id")
     suspend fun deletePhotoById(id: Int)
 }

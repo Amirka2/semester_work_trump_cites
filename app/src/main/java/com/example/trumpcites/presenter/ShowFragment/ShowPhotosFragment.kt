@@ -2,9 +2,14 @@ package com.example.trumpcites.presenter.ShowFragment
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.trumpcites.R
 import com.example.trumpcites.databinding.FragmentShowPhotosBinding
@@ -18,7 +23,7 @@ class ShowPhotosFragment: Fragment(R.layout.fragment_show_photos) {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val adapter = ShowPhotosAdapter()
+    private val adapter = ShowPhotosAdapter(::onDeleteClick)
 
     private val viewModel: ShowPhotosViewModel by viewModels() {
         viewModelFactory
@@ -33,20 +38,22 @@ class ShowPhotosFragment: Fragment(R.layout.fragment_show_photos) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding.photosRecycler) {
-            // TODO получать фотки в адаптере или фрагменте, что лучше?
-            // TODO Создать хмл для одного элемента списка фотки
-            // TODO сделать кнопку выхода с экрана 2 на экран 1
-            // TODO сделать хоум фрагмент по подобию шоуфотос
-            // TODO пример работы с апи в лессон 11.11
+            adapter = this@ShowPhotosFragment.adapter
+            layoutManager = LinearLayoutManager(requireContext())
         }
 
         viewModel.paths.observe(viewLifecycleOwner) {
-            val list = mutableListOf<String>()
-            for (photo in it) {
-                list.add(photo.path)
-            }
+            adapter.submitList(it)
         }
 
-        // доставание фоток из памяти
+        viewModel.getPhotos()
+
+        binding.topNavbar.setOnMenuItemClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun onDeleteClick(photoId: Int) {
+        viewModel.deletePhoto(photoId)
     }
 }

@@ -2,4 +2,8 @@
     <string name="app_name">TrumpCites</string>
     <string name="get_button_text">Получить</string>
     <string name="save_button_text">Добавить в избранное</string>
+    <string name="back_button_text">Назад</string>
+    <string name="go_to_favorite_text">Перейти к избранным</string>
+    <string name="meme_placeholder">Мем</string>
+    <string name="cross_icon">Удалить</string>
 </resources>

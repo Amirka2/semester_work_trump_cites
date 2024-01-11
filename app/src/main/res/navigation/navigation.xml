@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/showPhotosFragment"
-        android:name="com.example.trumpcites.presenter.ShowPhotosFragment"
+        android:name="com.example.trumpcites.presenter.ShowFragment.ShowPhotosFragment"
         android:label="ShowPhotosFragment" />
 </navigation>
